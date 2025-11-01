@@ -26,3 +26,22 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    conteo_meses = {}
+    ruta_archivo = 'files/input/data.csv'
+
+    with open(ruta_archivo, 'r') as f:
+        for linea in f:
+            if linea.strip():
+                columnas = linea.split('\t')
+                fecha = columnas[2]
+                mes = fecha[5:7]  # Extraer el mes del formato YYYY-MM-DD
+                if mes in conteo_meses:
+                    conteo_meses[mes] += 1
+                else:
+                    conteo_meses[mes] = 1
+    resultado = sorted(conteo_meses.items())
+    return resultado
+print(pregunta_04())
+
+

@@ -16,3 +16,21 @@ def pregunta_11():
 
 
     """
+    suma_por_letra = {}
+    ruta_archivo = 'files/input/data.csv'
+
+    with open(ruta_archivo, 'r') as f:
+        for linea in f:
+            if linea.strip():
+                columnas = linea.split('\t')
+                valor = int(columnas[1])
+                letras_col4 = columnas[3].strip().split(',')
+
+                for letra in letras_col4:
+                    if letra in suma_por_letra:
+                        suma_por_letra[letra] += valor
+                    else:
+                        suma_por_letra[letra] = valor
+
+    resultado = dict(sorted(suma_por_letra.items()))
+    return resultado

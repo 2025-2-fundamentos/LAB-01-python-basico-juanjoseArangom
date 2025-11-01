@@ -24,3 +24,20 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    conteo_claves = {}
+    ruta_archivo = 'files/input/data.csv'
+
+    with open(ruta_archivo, 'r') as f:
+        for linea in f:
+            if linea.strip():
+                columnas = linea.split('\t')
+                diccionario_str = columnas[4]
+                pares = diccionario_str.split(',')
+                for par in pares:
+                    clave, _ = par.split(':')
+                    if clave in conteo_claves:
+                        conteo_claves[clave] += 1
+                    else:
+                        conteo_claves[clave] = 1
+
+    return conteo_claves
